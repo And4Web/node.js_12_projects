@@ -1,0 +1,11 @@
+{
+  "name": "node.js_fundamentals",
+  "version": "1.0.0",
+  "description": "Node.js fundamentals understanding by building 12 projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
