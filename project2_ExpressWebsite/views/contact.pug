@@ -1,4 +1,22 @@
 extends layout.pug 
 block content 
   .container.my-4
-    h1 Contact us
+    form(method='post', action='contact/send')
+      .text-center 
+        h1 Contact 
+      hr
+      .form-group 
+      label 
+        h6 Name 
+      input.form-control(type='text', placeholder='Enter Name', name='name')
+      .form-group 
+      label 
+        h6 Email 
+      input.form-control(type='email', placeholder='Enter Email', name='email')
+      .form-group 
+      label 
+        h6 Message
+      textarea.form-control( placeholder='Enter Message', name='message')
+      button.btn.btn-primary(type='submit') Submit
+           
+      

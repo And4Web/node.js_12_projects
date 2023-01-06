@@ -28,6 +28,9 @@ app.get('/about', (req, res)=>{
 app.get('/contact', (req, res)=>{
   res.render('contact')
 })
+app.post('/contact/send',(req, res)=>{
+  console.log("sending test")
+})
 
 // Static
 const static = path.join(__dirname, './public');
