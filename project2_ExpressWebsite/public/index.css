@@ -10,10 +10,19 @@
   width: 100%;
 }
 .box1{
-  background-color: red;
+  background-color: orangered;
 }
 .box2{
   background-color: white;
+  position: relative;
+}
+.circle{
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 3%;
+  left: 45%;
 }
 .box3{
   background-color: green;
