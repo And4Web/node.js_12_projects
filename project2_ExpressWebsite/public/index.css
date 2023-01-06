@@ -1,0 +1,20 @@
+.main{
+  display: flex;
+  flex-direction: column; 
+  border: 1px solid black; 
+  height: auto;
+  width: auto;
+}
+.box{
+  height: 50px; 
+  width: 100%;
+}
+.box1{
+  background-color: red;
+}
+.box2{
+  background-color: white;
+}
+.box3{
+  background-color: green;
+}
