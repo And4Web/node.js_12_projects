@@ -31,7 +31,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 
 //handle file uploades
-const upload = multer({dest: 'uploads/'});
+const uploads = multer({dest: 'uploads/'});
 // app.use(multer({dest: 'uploads/'}));
 
 //express-messages
@@ -60,9 +60,7 @@ app.use(passport.session());
 
 //routes
 app.get('/', (req, res)=>{
-  res.render('index', {
-    title: 'Pug'
-  });
+  res.render('index', {title: 'Members'});
 })
 // app.use('/', index);
 app.use('/users', users);
