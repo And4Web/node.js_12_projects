@@ -24,7 +24,7 @@ http.createServer((req, res)=>{
     stats = fs.lstatSync(fileName);
   } catch (error) {
     res.writeHead(404, {'Content-type': 'text/plain'});
-    res.write('404 Not Found.\n');
+    res.write('404 Not Found...\n');
     res.end();
     return;
   }
@@ -34,7 +34,7 @@ http.createServer((req, res)=>{
     let fileStream = fs.createReadStream(fileName);
     fileStream.pipe(res);
   }else if(stats.isDirectory){
-    res.writeHead(302, {'Locatoin': 'index.html'});
+    res.writeHead(302, {'Location': 'index.html'});
     res.end();
   } else{
     res.writeHead(500, {'Content-type': 'text/plain'});
