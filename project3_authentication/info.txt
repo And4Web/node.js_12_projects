@@ -1,1 +1,2 @@
-"npm install express-generator" ===> node.js express broilerplate for beginning the project.
+"npm install express-generator" 
+    ===> node.js express.js broilerplate for beginning the project.
