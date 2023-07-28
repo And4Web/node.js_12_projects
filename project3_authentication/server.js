@@ -24,6 +24,8 @@ const PORT = 5000
 
 //json parsing
 app.use(express.json());
+//form-data parsing
+app.use(express.urlencoded({extended: false}))
 
 //view engine setup
 app.set('views', path.join(__dirname, '/views'));
