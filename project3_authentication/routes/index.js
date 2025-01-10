@@ -1,8 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res)=>{
-  res.status(200).json({"message":"index page"})
-})
+// Home page
+router.get("/", ensureAuthenticated, (req, res) => {
+  console.log("Home page, isAuthenticated >>> ", req);
+  res.render('index', {title: "Members"});
+});
+
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/users/login');
+}
 
 module.exports = router;

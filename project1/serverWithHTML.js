@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const port = 5500;
 
-const mimeType = {
+const mimeTypes = {
   "html":"text/html",
   "jpeg":"image/jpeg",
   "jpg":"image/jpg",
@@ -16,12 +16,17 @@ const mimeType = {
 
 http.createServer((req, res)=>{
   let uri = url.parse(req.url).pathname;
-  let fileName = path.join(process.cwd(), unescape(uri));
-  console.log('Loading' + uri);
+  let filePath = path.join(process.cwd(), unescape(uri));
+
+  console.log("URL >>> ", req.url);
+  console.log('Loading ' + uri + ' ' + filePath);
+  
   let stats;
 
   try {
-    stats = fs.lstatSync(fileName);
+    stats = fs.lstatSync(filePath);
+   
+    console.log('stats >>> ', stats.isFile(), stats.isDirectory())
   } catch (error) {
     res.writeHead(404, {'Content-type': 'text/plain'});
     res.write('404 Not Found...\n');
@@ -29,12 +34,12 @@ http.createServer((req, res)=>{
     return;
   }
   if(stats.isFile()){
-    let mimeType = mimeType[path.extname(fileName).split('.').reverse()[0]];
+    let mimeType = mimeTypes[path.extname(filePath).split('.').reverse()[0]];
     res.writeHead(200, {'Content-type': mimeType});
-    let fileStream = fs.createReadStream(fileName);
+    let fileStream = fs.createReadStream(filePath);
     fileStream.pipe(res);
   }else if(stats.isDirectory){
-    res.writeHead(302, {'Location': 'index.html'});
+    res.writeHead(302, {'Location': 'project1/index.html'});
     res.end();
   } else{
     res.writeHead(500, {'Content-type': 'text/plain'});

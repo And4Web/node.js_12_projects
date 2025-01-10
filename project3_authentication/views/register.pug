@@ -1,11 +1,13 @@
 extends layout.pug
 
 block content
+ if success   
+  h4.text-success.text-center(style='font-size:2.5rem') Registration successful
  h2.page-header Register
  p Please register using the form below
  if errors
-  each error, i in errors
-   div.alert.alert-danger #{error.msg}
+  each val, i in errors 
+   .alert.alert-danger #{val.msg}
  form(method='post', action='/users/register',enctype='multipart/form-data')
   .form-group
    label Name
@@ -26,3 +28,8 @@ block content
    label Profile Image
    input.form-control(name='profileimage', type='file')
   input.btn.btn-primary(type='submit', name='submit',value='Register')
+
+
+  //-  if errors
+  //- each error, i in errors
+  //-  div.alert.alert-danger #{error.msg}

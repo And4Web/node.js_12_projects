@@ -7,7 +7,7 @@ html(lang='en')
     block scripts
       script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
       script(src='/javascripts/bootstrap.js')
-  body
+  body    
     .navbar.navbar-default(role='navigation')
       .container
         .navbar-header
@@ -19,15 +19,18 @@ html(lang='en')
           a.navbar-brand(href='/') NodeAuth
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            li(class=(title == 'Members' ? 'active' : ''))
-              a(href='/') Members
-            li(class=(title == 'Register' ? 'active' : ''))
-              a(href='/users/register') Register
-            li(class=(title == 'Login' ? 'active' : ''))
-              a(href='/users/login') Login
+            if user
+             li(class=(title == 'Members' ? 'active' : ''))
+               a(href='/') Members
+            if !users
+             li(class=(title == 'Register' ? 'active' : ''))
+               a(href='/users/register') Register
+             li(class=(title == 'Login' ? 'active' : ''))
+               a(href='/users/login') Login
           ul.nav.navbar-nav.navbar-right
-           li
-              a(href='/users/logout') Logout
+            if user 
+             li
+               a(href='/users/logout') Logout
     .container
      != messages()
      block content 
@@ -35,6 +38,6 @@ html(lang='en')
       footer
         hr
         .text-center
-          h5 &copy;And4Web 2023, All rights reserved. 
+          h5 &copy;And4Web 2025, All rights reserved. 
     //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
     //- script(src='javascripts/bootstrap.js')

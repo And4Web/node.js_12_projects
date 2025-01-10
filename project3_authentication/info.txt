@@ -1,2 +1,7 @@
-"npm install express-generator" 
+#"npm install express-generator" 
     ===> node.js express.js broilerplate for beginning the project.
+
+#Passport Username password:
+    ===> https://www.passportjs.org/tutorials/password/prompt/
+    ===> https://www.passportjs.org/concepts/authentication/login/
+

@@ -9,11 +9,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const expressValidator = require('express-validator');
 const multer = require('multer');
 const flash = require('connect-flash');
+const eMessages = require('express-messages');
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
 
 //database
-const db = mongoose.connection;
+mongoose.connect("mongodb://127.0.0.1:27017/nodeauth")
 
 //routes
 const index = require('./routes')
@@ -61,14 +62,44 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //validator
+// app.use(expressValidator({
+//   errorFormatter: function(param, msg, value){
+//     let nameSpace = param.split("");
+//     let root = nameSpace.split("");
+//     let formParam = root;
+
+//     while(nameSpace.length){
+//       formParam +='[' + nameSpace.shift() + ']'
+//     }
+//     return {
+//       param: formParam,
+//       msg: msg,
+//       value: value
+//     }
+//   }
+// }));
+
+// Express-flash
+
+app.use(flash());
+app.use(function(req, res, next){
+  res.locals.messages = eMessages(req, res);
+  next();
+})
+
+// Global variables
+app.get('*', (req, res, next)=>{
+  res.locals.user = req.user || null;
+  next();
+})
 
 //routes
-app.get('/', (req, res)=>{
-  res.render('index', {title: 'Members'});
-})
-// app.use('/', index);
+// app.get('/', (req, res)=>{
+//   res.render('index', {title: 'Members'});
+// })
+app.use('/', index);
 app.use('/users', users);
 
-app.listen(PORT, ()=>console.log(`Server running at port: ${PORT}`))
+app.listen(PORT, ()=>console.log(`~~Project 3 Server running at port: ${PORT}`))
 
 module.exports = app;

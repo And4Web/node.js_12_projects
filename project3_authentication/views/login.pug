@@ -1,6 +1,10 @@
 extends layout.pug
 
 block content
+ if error 
+  p.alert.alert-danger #{error}
+ if success 
+  h4.text-success #{success}
  h2.page-header Login
  p Please login below
  if errors

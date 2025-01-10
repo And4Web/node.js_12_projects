@@ -22,12 +22,15 @@ app.get("/", (req, res)=>{
   });
   // console.log(req.url);
 })
+
 app.get('/about', (req, res)=>{
   res.render('about')
 })
+
 app.get('/contact', (req, res)=>{
   res.render('contact')
 })
+
 app.post('/contact/send',async (req, res)=>{
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
@@ -67,11 +70,11 @@ app.post('/contact/send',async (req, res)=>{
 })
 
 // Static
-const static = path.join(__dirname, './public');
-app.use(express.static(static));
+const staticFilesPath = path.join(__dirname, './public');
+app.use(express.static(staticFilesPath));
 
 app.get('/', (req, res)=>{
-  res.send('Hello! This server is running...')
+  res.send('Hello! Server is ON...')
 })
 
 app.listen(PORT, () => {
