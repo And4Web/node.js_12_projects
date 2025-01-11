@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Category = require('../models/category');
 const path = require('path');
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
@@ -28,8 +29,11 @@ const getAllPosts = async (req, res)=>{
 const addNewPost = async (req, res) => {
 
   const renderPath = path.join(__dirname , '..' , 'views','addpost')
+
+  const categories = await Category.find({}, {_id:0});
+  console.log('Categories >>> ', categories.map(i=>i.category));
   
-  res.render(renderPath, {title: "Add Post"});
+  res.render(renderPath, {title: "Add Post", categories: categories.map(i=>i.category)});
 
   // res.send({message: "add route"})
 }
