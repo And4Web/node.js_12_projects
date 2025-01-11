@@ -4,10 +4,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session')
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
+
 const expressValidator = require('express-validator');
 const multer = require('multer');
+
 const flash = require('connect-flash');
 const eMessages = require('express-messages');
 const mongo = require('mongodb');
@@ -15,27 +15,19 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-//database
-const url=process.env.mongoURL;
-
-const connectDB = async()=>{
-  try {
-    mongoose.set({strictQuery: true});
-    await mongoose.connect(`${url}/nodeauth`)
-
-    console.log("MongoDB connected successfully - NodeAuth")
-  } catch (error) {
-    console.log("MongoDB connection Error >>> ", error.messages);
-  }  
-}
-connectDB();
-
-//routes
-const index = require('./routes')
-const users = require('./routes/users');
 
 const app = express();
 const PORT = 5000
+
+//database
+const connectDB = require('./db');
+connectDB();
+
+//routes
+
+
+// Moment
+// app.locals.moment = require('moment');
 
 //json parsing
 app.use(express.json());
@@ -43,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 //view engine setup
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //morgan logger
@@ -51,7 +43,6 @@ app.use(logger('dev'));
 
 //handle file uploades
 const uploads = multer({dest: 'uploads/'});
-// app.use(multer({dest: 'uploads/'}));
 
 //express-messages
 app.use(flash());
@@ -71,28 +62,6 @@ app.use(session({
   cookie: {secure: true}
 }))
 
-//Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-//validator
-// app.use(expressValidator({
-//   errorFormatter: function(param, msg, value){
-//     let nameSpace = param.split("");
-//     let root = nameSpace.split("");
-//     let formParam = root;
-
-//     while(nameSpace.length){
-//       formParam +='[' + nameSpace.shift() + ']'
-//     }
-//     return {
-//       param: formParam,
-//       msg: msg,
-//       value: value
-//     }
-//   }
-// }));
-
 // Express-flash
 
 app.use(flash());
@@ -101,19 +70,21 @@ app.use(function(req, res, next){
   next();
 })
 
-// Global variables
-app.get('*', (req, res, next)=>{
-  res.locals.user = req.user || null;
-  next();
-})
 
 //routes
 // app.get('/', (req, res)=>{
-//   res.render('index', {title: 'Members'});
+  // console.log("dirnam >>> ", path.join(__dirname, 'views'))
+// res.send({message: "Home page - Project 4: Node Blog system"})
+//   res.render('index', {title: "Node Blog System"})
 // })
-app.use('/', index);
-app.use('/users', users);
 
-app.listen(PORT, ()=>console.log(`~~Project 3 Server running at port: ${PORT}`))
+const route = require('./routes');
+const postsRoutes = require('./routes/postsRoutes');
+
+app.use('/', route);
+app.use('/posts', postsRoutes);
+
+
+app.listen(PORT, ()=>console.log(`~~Project_4 -  Server running at port: ${PORT}`))
 
 module.exports = app;

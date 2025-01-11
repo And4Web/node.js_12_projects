@@ -1,0 +1,109 @@
+body{
+  font: 1rem;
+  background: #f4f4f4;
+  color: #666;
+}
+.logo{
+  text-align: center;
+  margin: auto;
+  display: block;
+  height: 4rem;
+  width: auto;
+  margin-bottom: 1rem;
+}
+.container{
+  width: 45rem;
+  border: 1px solid #ccc;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  border-top: #83cd39 3px solid;
+}
+
+.clr{
+  clear: both;
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+}
+
+h1,h2,h3,p{
+  padding: 5px 0;
+  margin-bottom: 0;
+}
+
+p{
+  margin: 0;
+}
+
+nav{
+  background: #404137;
+  color: #fff;
+  overflow: auto;
+  height: 2.5rem;
+  padding: 1.5rem 0 0 .6rem;
+  font-size: 1.2rem;
+}
+
+nav li{
+  float: left;
+  list-style: none;
+
+}
+nav a{
+  padding: .6rem;
+  margin: 0 .6rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a.current, nav a.hover{
+  background: #83cd29;
+  color: #000;
+}
+
+footer{
+  text-align: center;
+}
+.post a{
+  color: #666;
+  text-decoration: none;
+}
+.meta{
+  padding: .5rem;
+  border: 1px solid #ccc;
+  background: #ccc;
+}
+a.more{
+  display: block;
+  width: 5rem;
+  background: #404137;
+  color: #fff;
+  padding: .6rem;
+  margin-top: 2rem;
+}
+
+input, select, textarea{
+  margin-bottom: 1rem;
+}
+
+label{
+  display: inline-block;
+  width: 12rem;
+}
+
+input[type='text'], select, textarea{
+  padding: 3px;
+  height: 1.4rem;
+  width: 15rem;
+  border: 1px solid #ccc;
+}
+select{
+  height: 1.8rem;
+}
+
+textarea{
+  height: 4.5rem;
+  width: 28rem;
+}

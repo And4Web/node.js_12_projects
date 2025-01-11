@@ -2,8 +2,8 @@
 // require('./project1/basicServer.js');
 // require('./project1/serverWithHTML.js');
 // require('./project2_ExpressWebsite/server.js');
-require('./project3_authentication/server');
-// require('./project4');
+// require('./project3_authentication/server');
+require('./project4_node_blog_system/server');
 // require('./project5');
 // require('./project6');
 // require('./project7');
