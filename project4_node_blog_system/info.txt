@@ -4,3 +4,4 @@ monk - https://automattic.github.io/monk/
 express validator
 multer
 moment
+ckeditor for text area - find free alternatives - quilljs.com
