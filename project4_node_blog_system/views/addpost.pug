@@ -19,7 +19,7 @@ block content
             option(value=category) #{category} 
     .form-group   
       label Body  
-      textarea.form-control(name="body", id='body')
+      textarea.form-control(name="body", id='editor')
     .form-group   
       label Main Image:  
       input.form-control(name="mainimage", type="file")
@@ -30,3 +30,5 @@ block content
         option(value="Anand Shukla") Anand shukla 
         option(value="Shilpa Shinde") Shilpa Shinde 
     input.btn.btn-default(name='submit', type='submit', value='Save') 
+    script(src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js")
+    script(src="/ckeditor5-builder/main.js")

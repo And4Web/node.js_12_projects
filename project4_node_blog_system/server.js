@@ -26,9 +26,6 @@ connectDB();
 //routes
 
 
-// Moment
-// app.locals.moment = require('moment');
-
 //json parsing
 app.use(express.json());
 //form-data parsing
@@ -54,6 +51,7 @@ app.use(function (req, res, next) {
 //static files
 app.use(express.static(path.join(__dirname, "public")));
 
+
 //handle sessions
 app.use(session({
   secret: "mySessionSecret",
@@ -77,12 +75,15 @@ app.use(function(req, res, next){
 // res.send({message: "Home page - Project 4: Node Blog system"})
 //   res.render('index', {title: "Node Blog System"})
 // })
+app.get('/editor', (req, res)=>res.sendFile(path.join(__dirname, 'public', 'ckeditor5-builder', 'index.html')))
 
 const route = require('./routes');
 const postsRoutes = require('./routes/postsRoutes');
+const categoriesRoutes = require('./routes/categoriesRoutes');
 
 app.use('/', route);
 app.use('/posts', postsRoutes);
+app.use('/categories', categoriesRoutes);
 
 
 app.listen(PORT, ()=>console.log(`~~Project_4 -  Server running at port: ${PORT}`))

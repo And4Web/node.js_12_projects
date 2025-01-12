@@ -75,7 +75,7 @@ const createNewPost = async (req, res) => {
     req.flash("success", "New post created.");
     res.location('/');
     res.redirect("/");
-    return res.status(200).json({message: "new post created.", newPost, totalPosts: posts});
+    // res.render(renderPath)
   }  
   } catch (error) {
     console.log(error)
