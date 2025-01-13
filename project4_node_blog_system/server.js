@@ -23,7 +23,11 @@ const PORT = 5000
 const connectDB = require('./db');
 connectDB();
 
-//routes
+//global variables
+// app.locals.truncatedText = function(text, length){
+//   let truncatedText = text.substring(0,length);
+//   return truncatedText;
+// }
 
 
 //json parsing
@@ -49,7 +53,8 @@ app.use(function (req, res, next) {
 });
 
 //static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use('/', express.static(path.join(__dirname, "public")));
+// app.use('/public', express.static('/public'))
 
 
 //handle sessions
@@ -84,7 +89,6 @@ const categoriesRoutes = require('./routes/categoriesRoutes');
 app.use('/', route);
 app.use('/posts', postsRoutes);
 app.use('/categories', categoriesRoutes);
-
 
 app.listen(PORT, ()=>console.log(`~~Project_4 -  Server running at port: ${PORT}`))
 

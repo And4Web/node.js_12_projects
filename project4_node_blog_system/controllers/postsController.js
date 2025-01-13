@@ -19,7 +19,11 @@ const getAllPosts = async (req, res)=>{
   // console.log('dirname >>> ', __dirname)
   // console.log('renderPath >>> ', renderPath)
 
-  res.render(renderPath, {posts: posts});
+  res.render(renderPath, {posts: posts, truncatedText: function(text, length){
+    let truncatedText = text.substring(0,length);
+    return truncatedText;
+  }
+  });
   } catch (error) {
     res.render(renderPath, {error: error.message})
   }    
@@ -31,7 +35,7 @@ const addNewPost = async (req, res) => {
   const renderPath = path.join(__dirname , '..' , 'views','addpost')
 
   const categories = await Category.find({}, {_id:0});
-  console.log('Categories >>> ', categories.map(i=>i.category));
+  // console.log('Categories >>> ', categories.map(i=>i.category));
   
   res.render(renderPath, {title: "Add Post", categories: categories.map(i=>i.category)});
 
@@ -61,7 +65,7 @@ const createNewPost = async (req, res) => {
   // check for errors and create new post
   const renderAddPostPath = path.join(__dirname, '..', 'views/addpost');
   if(req.validationErrors){
-    console.log("validation errors >>> ", req.validationErrors);  
+    // console.log("validation errors >>> ", req.validationErrors);  
 
     res.render(renderAddPostPath, {
       "errors": req.validationErrors,

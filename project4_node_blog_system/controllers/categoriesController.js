@@ -1,11 +1,13 @@
 const Category = require('../models/category');
+const path = require('path');
 
 const createNewCategory =  async (req,res)=>{
   
    const {name} = req.body;
 
    if(req.validationErrors){
-    res.render('addcategories', {'errors': req.validationErrors})
+    const errorRenderPath = path.join(__dirname, '..', 'views','addcategory.pug')
+    res.render(errorRenderPath, {'errors': req.validationErrors})
    }else{
     const newCategory = await Category.create({
       category: name

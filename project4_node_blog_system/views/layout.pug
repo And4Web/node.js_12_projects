@@ -16,9 +16,12 @@ html(lang='en')
           a(href='/posts/add') Add Post 
         li 
           a(href='/categories/add') Add Category  
-   h1 And4Web Blog    
+   != messages()
    block content
    block foot
     footer 
       hr
       p &copy;And4Web 2025, All rights reserved.
+
+
+  //- h1 And4Web Blog    

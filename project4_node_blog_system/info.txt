@@ -5,3 +5,5 @@ express validator
 multer
 moment
 ckeditor for text area - find free alternatives - quilljs.com
+
+pug variables: https://github.com/pugjs/pug/issues/2927

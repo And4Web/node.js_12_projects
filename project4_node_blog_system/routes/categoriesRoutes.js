@@ -5,6 +5,7 @@ const { runValidation } = require('../validation');
 const {categoryValidation} = require('../validation/categoryValidation');
 const { createNewCategory } = require('../controllers/categoriesController');
 
+
 // add category
 router.get('/add', async (req, res)=>{
   const categories = await category.find({}); 

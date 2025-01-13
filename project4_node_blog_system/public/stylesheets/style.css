@@ -66,9 +66,17 @@ nav a.current, nav a.hover{
 footer{
   text-align: center;
 }
+.post{
+  max-width: 85%;
+  /* width: 80rem; */
+  margin: auto;
+}
 .post a{
   color: #666;
   text-decoration: none;
+}
+.post img{
+  width: 100%;
 }
 .meta{
   padding: .5rem;
@@ -82,6 +90,7 @@ a.more{
   color: #fff;
   padding: .6rem;
   margin-top: 2rem;
+  cursor: pointer;
 }
 
 input, select, textarea{
@@ -106,4 +115,35 @@ select{
 textarea{
   height: 4.5rem;
   width: 28rem;
+}
+.alert-danger{
+  color: red;
+}
+.alert-success{
+  color: green;
+}
+
+ul.success li{
+  padding: 1rem;
+  margin-top: .6rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  list-style: none;
+}
+a.link{
+  text-decoration: none;
+  color: #d6e9c6;
+  background-color: #404137;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+a.link:hover{
+  color: #404137;
+  background-color: #d6e9c6;
 }
