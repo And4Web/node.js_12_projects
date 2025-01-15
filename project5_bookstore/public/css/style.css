@@ -1,0 +1,85 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav-container{
+  height: 4rem;
+  /* background-color: rgb(209, 208, 208); */
+  
+  font-size: 1.5rem;
+  padding: 0 4rem;
+}
+.nav-link{
+  color: gold!important;
+}
+.nav-link:hover{
+  border-bottom: 2px solid green;
+  background-color: greenyellow;
+  color: green!important;
+  height: 4rem;
+  transition: all .3s ease-in-out;
+}
+body{
+  background: rgb(138, 227, 138);
+  width: 100vw;
+  height: 100vh;
+
+}
+
+.book-container{
+  /* border: 1px solid black; */
+  /* height: 5rem; */
+  
+}
+
+.book{
+  height: auto;
+  min-width: 18rem;
+  width: 18rem;
+  /* border: 1px solid black; */
+  box-shadow: 1px 2px 5px green;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: .5rem .2rem;
+}
+.book-image{
+  width: auto;
+  height: 15rem;
+}
+.book-title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.book-desc{
+  font-size: .9rem;
+  width: 100%;
+  text-align: justify;
+  word-wrap: wrap;
+}
+.book-price{
+  color: blue;
+}
+.book-price span{
+  color: rgb(3, 96, 3);
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+.book-details{
+  padding: .6rem;
+  /* margin: .6rem; */
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px gray;
+}
+.book-details a{
+  text-decoration: none;
+  color: green;
+  font-size: 1.2rem;
+}
+.book-details:hover{
+  transform: scale(1.01);
+  transition: all .2s ease-in-out;
+}

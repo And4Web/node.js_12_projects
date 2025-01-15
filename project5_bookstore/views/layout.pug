@@ -1,0 +1,25 @@
+doctype html 
+html 
+   head
+     title= title 
+     link(rel="stylesheet", href="/css/bootstrap.min.css")
+     link(rel="stylesheet", href="/css/style.css")
+     block script
+       script(src="/js/bootstrap.min.js") 
+   body
+      .nav-container.bg-success.text-warning
+        ul.nav
+          li.nav-item
+            a.nav-link.active.text-dark(aria-current='page' href='/') Home
+          li.nav-item
+            a.nav-link.text-dark(href='/about') About
+          li.nav-item
+            a.nav-link.text-dark(href='/cart') Cart     
+
+      block content
+
+      block foot  
+        footer.text-center 
+          hr
+          a.text-success(href="/manage") Manage
+          p &copy;And4Web Bookstore 2025, All rights reserved. 
