@@ -70,6 +70,7 @@ footer{
   max-width: 85%;
   /* width: 80rem; */
   margin: auto;
+  text-align: justify;
 }
 .post a{
   color: #666;
@@ -146,4 +147,7 @@ a.link{
 a.link:hover{
   color: #404137;
   background-color: #d6e9c6;
+}
+img{
+  width: 100%;
 }

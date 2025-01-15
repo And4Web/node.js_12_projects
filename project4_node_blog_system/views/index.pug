@@ -5,7 +5,7 @@ block content
     each post, i in posts 
       .post 
         h1 
-          a(href='/posts/show/#{post._id}')
+          a(href=`/posts/${post._id}`)
             =post.title
         p.meta Posted in 
           a.link(href=`/posts/show/${post.category}`) #{post.category} 
@@ -14,4 +14,4 @@ block content
         img(src=`/images/${post.mainImage}`, alt="blog image")
         !=truncatedText(post.body, 500) 
         span ...
-        a.more(href=`/posts/show/${post._id}`) Read More
+        a.more(href=`/posts/${post._id}`) Read More

@@ -1,9 +1,10 @@
 const express = require('express');
-const { addNewPost, createNewPost } = require('../controllers/postsController');
+const { addNewPost, createNewPost, showSinglePost, addNewComment } = require('../controllers/postsController');
 const router = express();
 const path = require('path');
 const multer = require('multer');
 const { postValidation } = require('../validation/postValidation');
+const {commentValidation} = require('../validation/commentValidation');
 const { runValidation } = require('../validation');
 
 const Post = require('../models/post');
@@ -34,7 +35,7 @@ router.get('/show/:category', async (req, res)=>{
 
   const renderPath = path.join(__dirname, '..', 'views','index')
 
-  console.log('category posts >>> ', posts)
+  // console.log('category posts >>> ', posts)
   // res.send('category found >>> ', req.params.category)
   res.render(renderPath, {title: req.params.category, posts: posts, truncatedText: function(text, length){
     let truncatedText = text.substring(0,length);
@@ -42,6 +43,10 @@ router.get('/show/:category', async (req, res)=>{
   }})
 })
 
+// Get/show single post
+router.get('/:postId', showSinglePost)
 
+// Post comment
+router.post('/addcomment', commentValidation, runValidation, addNewComment);
 
 module.exports = router;

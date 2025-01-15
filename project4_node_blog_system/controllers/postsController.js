@@ -87,9 +87,57 @@ const createNewPost = async (req, res) => {
   
 }
 
+// Show single post
+const showSinglePost = async (req, res) => {
+  const renderPath = path.join(__dirname, '..', 'views', 'singlePost');
+
+  try {
+    const {postId} = req.params;
+
+  const post = await Post.findById(postId);
+
+  if(!post){
+    res.render(renderPath, {title: "No post found."})
+  }else{
+    const {title, author, body, category, mainImage, date, _id, comments} = post;
+    res.render(renderPath, {title: title, category: category, author: author, body: body, id: _id, date: date, mainImage: mainImage, comments: comments})
+  }
+  } catch (error) {
+    console.log("single post Error >>> ", typeof error.reason);
+    res.render(renderPath, {error: error.reason});
+  }
+  
+}
+
+// Add comment
+const addNewComment = async (req, res) => {
+  const renderPath = path.join(__dirname, '..','views', 'singlePost');
+  try {
+    const {name, email, body, postid} = req.body;
+    const newComment = {name, email, body}
+
+    // console.log("current comment and post >>> ", newComment, postid)
+
+    await Post.updateOne({_id: postid}, {$push: {comments: newComment}})
+
+    const currentPost = await Post.findById(postid);
+
+    // console.log("Comments >>> ", currentPost.comments);
+    res.render(renderPath, {comments: currentPost.comments});
+
+    res.location(`/posts/${postid}`);
+    res.redirect(`/posts/${postid}`);
+
+  } catch (error) {
+    console.log('Comment Error >>> ', error.message);
+    res.render(renderPath, {error: error.message})
+  }
+}
+
 module.exports = {
   getAllPosts,
   addNewPost,
   createNewPost,
-
+  showSinglePost,
+  addNewComment
 }

@@ -8,7 +8,7 @@ exports.runValidation = (req, res, next) => {
 
     // res.status(422).json({errors: req.validationErrors})
     // res.render('register', {errors: errors.array()})
-    console.log('validation errors >>> ', req.validationErrors)
+    // console.log('validation errors >>> ', req.validationErrors)
   }
   next();
 }
