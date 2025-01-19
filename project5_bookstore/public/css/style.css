@@ -39,7 +39,7 @@ body{
   min-width: 18rem;
   width: 18rem;
   /* border: 1px solid black; */
-  box-shadow: 1px 2px 5px green;
+  box-shadow: 1px 1px 2px green;
   border-radius: 5px;
   padding: 1rem;
   margin: .5rem .2rem;
@@ -82,4 +82,130 @@ body{
 .book-details:hover{
   transform: scale(1.01);
   transition: all .2s ease-in-out;
+}
+
+
+/* Single book page */
+
+.details{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  height: 100vh;
+  /* border: 2px solid red; */
+}
+.left{
+  width: 30%;
+  margin: auto;
+  /* border: 1px solid black; */
+  text-align: center;
+} 
+.book-cover{
+  height: 30rem;
+  width: auto;
+}
+.right{
+  /* border: 1px solid black; */
+  width: 70%;
+  padding: 1rem;
+} 
+.single-book-title{
+  text-align: center;
+
+}
+.single-book-info{
+  text-align: justify;
+}
+.single-book-category span{
+  font-weight: bold;  
+}
+.single-book-author span{
+  font-weight: bold;
+} 
+.single-book-publisher span{
+  font-weight: bold;
+} 
+.single-book-price{  
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: green;
+  /* background-color: whitesmoke; */
+  width: 20rem;
+  padding: .5rem;
+  text-align: center;
+  margin-left: 22%;
+  border-radius: 10rem;
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 2px green;
+}
+.single-book-desc{
+  font-weight: bold;  
+} 
+.single-book-checkout-btn{
+  border: none;
+  outline: none;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 15px;
+  margin-left: 35%;
+  box-shadow: 1px 1px 2px green;
+}
+
+.single-book-checkout-btn a{
+  text-decoration: none;
+  color: black;  
+}
+.single-book-checkout-btn:hover{
+  transform: scale(0.99);
+  transition: all .2s ease-in-out;
+}
+
+
+
+/* -------------------------- */
+.manage-button{
+  padding: .5rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  margin-left: 1rem;
+  box-shadow: 1px 1px 2px green;
+}
+.manage-button:hover{
+  transform: scale(.98);
+  transition: all .2s ease-in-out;
+}
+.manage-button a{
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries */
+@media screen and (max-width: 500px){
+  .book{
+    width: 85%;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
 }

@@ -18,6 +18,7 @@ dbConfig(`${process.env.mongoURL}/bookstore`);
 
 // Global variables
 const PORT = process.env.PORT || 5000;
+app.locals.variableTest = {first: "here I am", second: "second is here", third: "This is third"}
 
 //json parsing
 app.use(express.json());
@@ -54,16 +55,26 @@ app.use(function(req, res, next){
 
 // Routes import
 const booksRouter = require('./routes/booksRouter');
+const manageRouter = require('./routes/manageRouter');
 
 // Routes
 app.get('/', (req, res)=>{
   // res.send({Message: "Hello world"})
+  console.log("local variables >>> ", app.locals);
   res.render('index', {title: "Online Bookstore - One place to find all Information"})
 })
 
 app.use('/books', booksRouter)
-// app.use('')
-// app.use('')
-// app.use('')
+app.use('/about', (req, res, next)=>{
+  res.render('about', {title: "About"})
+  next()
+})
+app.use('/cart', (req, res, next)=>{
+  res.render('cart', {title: "Cart"})
+  next()
+})
+app.use('/manage', manageRouter);
 
 app.listen(PORT, ()=>console.log(`<<< Server is ONN at PORT-${PORT} >>>`))
+
+module.exports = app;

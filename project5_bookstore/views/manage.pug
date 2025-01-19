@@ -1,0 +1,11 @@
+extends layout.pug 
+
+block content 
+  h1 #{title}
+  button.manage-button
+    a(href="/manage/books/edit") Edit book 
+  button.manage-button
+    a(href="/manage/books/add") Add new book 
+    .add-edit 
+      block content
+  

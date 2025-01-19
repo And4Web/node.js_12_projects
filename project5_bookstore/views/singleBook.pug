@@ -2,6 +2,23 @@ extends layout.pug
 
 block content 
   if bookId 
-    h1 #{bookId}
+    .details 
+      .left 
+        img.book-cover(src=mainImage, alt=bookTitle)
+      .right 
+        h1.single-book-title bookTitle
+        .single-book-info 
+          p.single-book-category bookCategory: 
+            span Technology         
+          p.single-book-author bookAuthor: 
+            span Some Author 
+          p.single-book-publisher bookPublisher: 
+            span Some Publisher 
+        button.single-book-price(disabled) &#8377;bookPrice/-
+        p.single-book-desc Description:
+        p bookDescription
+        button.single-book-checkout-btn
+          a(href="/checkout") Buy now
+
   else 
-    h1 wrong path
+    h1 404 - Page not Found.
