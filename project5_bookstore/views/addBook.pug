@@ -21,8 +21,17 @@ block content
       label Book Author
       input.form-control(name="author", type="text" placeholder="Author name must have at least 3 characters")
     .form-group
+      label Publication
+      input.form-control(name="publication", type="text" placeholder="Publication must have at least 8 characters")
+    .form-group
       label Book Cover
       input.form-control(name="bookcover", type="file" placeholder="Title must have at least 8 characters")
     input(name='submit', type='submit', value='Save') 
+    if singleError 
+      p.text-center.text-danger #{singleError}
+    if errors 
+      h4.text-danger.text-center Try again
+      each error, i in errors 
+        p.text-danger.text-center #{error}
     script(src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js")
     script(src="/ckeditor5-builder/main.js")

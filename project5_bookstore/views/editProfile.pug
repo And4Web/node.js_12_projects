@@ -1,0 +1,26 @@
+extends manage.pug 
+
+block content 
+  h1 Edit Profile - #{title}
+  form.edit-profile-form(action="/profile/edit", method="post", enctype="multipart/form-data")
+    .form-group
+      label Name
+      input.form-control(name="name", type="text" placeholder="Name must have at least 8 characters")
+    .form-group
+      label Description
+      textarea.form-control(name="description", placeholder="Description must have at least 50 characters")
+    .form-group
+      label Gender
+      select.form-control(name="gender")
+        option(value="Choose Gender") Choose Gender
+        option(value="Male") Male
+        option(value="Female") Female
+    .form-group
+      label Address
+      input.form-control(name="address", type="text" placeholder="Address must have at least 10 characters")
+    .form-group
+      label Profile Image
+      input.form-control(name="profileimage", type="file" placeholder="Profile Image is required")
+    input(name='submit', type='submit', value='Save') 
+    script(src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js")
+    script(src="/ckeditor5-builder/main.js")

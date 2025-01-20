@@ -64,6 +64,10 @@ app.get('/', (req, res)=>{
   res.render('index', {title: "Online Bookstore - One place to find all Information"})
 })
 
+app.get('/profile/edit', (req, res)=>{
+  res.render('editProfile', {title: "Edit Profile"})
+})
+
 app.use('/books', booksRouter)
 app.use('/about', (req, res, next)=>{
   res.render('about', {title: "About"})
