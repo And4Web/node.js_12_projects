@@ -4,8 +4,8 @@
 // require('./project2_ExpressWebsite/server.js');
 // require('./project3_authentication/server');
 // require('./project4_node_blog_system/server');
-require('./project5_bookstore/server');
-// require('./project6');
+// require('./project5_bookstore/server');
+require('./project6_chatIO/server');
 // require('./project7');
 // require('./project8');
 // require('./project9');

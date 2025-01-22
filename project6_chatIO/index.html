@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{
+      background: #f9f9f9;
+
+    }
+    .container{
+      width: 700px;
+      margin: auto;
+    }
+    #chatWindow{
+      height: 300px;
+    }
+    #mainWrapper{
+      display: none;
+    }
+    #chatWrapper{
+      float: left;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f4f4f4;
+      padding: 10px;
+      max-width: 420px;
+    }
+    #userWrapper{
+      float: left;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f4f4f4;
+      padding: 10px;
+      margin-left: 20px;
+      width: 150px;
+      max-height: 200px;
+    }
+    #namesWrapper{
+      float: left;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f4f4f4;
+      padding: 10px;
+      margin-left: 20px;
+      /* display: none; */
+    }
+    input{
+      height: 30px;
+      border: 1px solid #ccc;
+      padding: 0 1rem;
+      border-radius: 5px;
+      outline: none;
+    }
+  </style>
+  <title>ChatIO - nodejs</title>
+</head>
+<body>
+  <div class="container">
+    <div id="namesWrapper">
+      <h2>ChatIO</h2>
+      <p>Create Username:</p>
+      <form id="usernameForm">
+        <input type="text" id="username" size="35">
+        <input type="submit" value="Submit">         
+      </form>
+    </div>
+
+    <div id="mainWrapper">
+      <h2>ChatIO</h2>
+      <div id="chatWrapper">
+        <div id="chatWindow"></div>
+        <form id="messageForm">
+          <input type="text" size="35" id="message" placeholder="Say something...">
+          <input type="submit" value="submit">
+        </form>
+      </div>
+
+      <div id="userWrapper">
+        <div id="users"></div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Socket.io scripts -->
+  <!-- https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <script>
+    const socket = io();
+
+    const messageForm = document.getElementById('messageForm');
+    const message = document.getElementById('message');
+    const chat = document.getElementById('chatWindow');
+
+    const namesWrapper = document.getElementById('namesWrapper');
+    const mainWrapper = document.getElementById('mainWrapper');
+
+    const usernameForm = document.getElementById('usernameForm');
+    const users = document.getElementById('users');
+    const username = document.getElementById('username');
+
+    usernameForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      socket.emit('new user', e.target[0].value, (data)=>{
+        if(data){
+          namesWrapper.style.display = 'none';
+          mainWrapper.style.display = 'block';
+        }else{
+          const errorElement = document.createElement('p');
+          errorElement.innerText = 'Username is already taken';
+          namesWrapper.append(errorElement);
+        }
+      })
+
+      socket.on('usernames', (data)=>{
+        const userElement = document.createElement('p');
+        for(let i=0; i<data.length; i++){
+          userElement.innerText = data[i];
+          users.append(userElement);
+        }
+      })
+
+
+    })
+
+    messageForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+
+      socket.emit('send message', e.target[0].value);
+      e.target[0].value = "";
+    })
+
+    socket.on('new message', (data)=>{
+      const newMessageElement = document.createElement('div');
+      const currentUserElement = document.createElement('strong');
+      currentUserElement.innerText = data.user;
+
+      newMessageElement.append(currentUserElement, ":- ",  ` ${data.message}\n`);
+
+      chat.append(newMessageElement);
+    })
+
+  
+
+  </script>
+</body>
+</html>
