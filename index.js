@@ -5,9 +5,9 @@
 // require('./project3_authentication/server');
 // require('./project4_node_blog_system/server');
 // require('./project5_bookstore/server');
-require('./project6_chatIO/server');
-// require('./project7');
-// require('./project8');
+// require('./project6_chatIO/server');
+// require('./project7_findaDoc_directory/server');
+require('./project8_portfolio_app/server');
 // require('./project9');
 // require('./project10');
 // require('./project11');
