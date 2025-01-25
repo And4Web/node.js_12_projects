@@ -1,0 +1,11 @@
+.container{
+  height: 20rem;
+  width: 90%;
+  border: 2px solid blueviolet;
+  background-color: gold;
+  /* display: flex;
+  flex-direction: column; */
+}
+h1{
+  color: red;
+}
