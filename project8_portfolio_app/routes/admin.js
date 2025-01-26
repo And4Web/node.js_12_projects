@@ -1,11 +1,36 @@
 const express = require('express');
+const path = require('path');
+const { addProject } = require('../controllers/adminController');
+
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, path.join(__dirname, '..', 'public', 'images'));
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname);
+  }
+});
+const uploads = multer({storage: storage});
 
 const router = express.Router();
 
 router.get('/', async (req, res)=>{
   // res.send("Admin route")
-  const renderPath = require('path').join(__dirname, '..', 'views', 'admin', 'index.hbs');
+  const renderPath = path.join(__dirname, '..', 'views', 'admin', 'index.hbs');
   res.render(renderPath)
 })
+
+// router.get('/add', async (req, res)=>{
+//   const renderPath = path.join(__dirname, '..', 'views', 'admin', 'add.hbs');
+//   res.render(renderPath);
+// })
+
+// router.post('/add', uploads.single('projectImage'), addProject)
+
+router.route('/add').get(async (req, res)=>{
+  const renderPath = path.join(__dirname, '..', 'views', 'admin', 'add.hbs');
+  res.render(renderPath);
+}).post(uploads.single('projectImage'), addProject);
 
 module.exports = router;
