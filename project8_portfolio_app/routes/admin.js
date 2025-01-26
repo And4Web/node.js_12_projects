@@ -28,9 +28,13 @@ router.get('/', async (req, res)=>{
 
 // router.post('/add', uploads.single('projectImage'), addProject)
 
+// import validators:
+const {runValidation} = require('../validation/index');
+const {projectValidation} = require('../validation/projectValidation');
+
 router.route('/add').get(async (req, res)=>{
   const renderPath = path.join(__dirname, '..', 'views', 'admin', 'add.hbs');
   res.render(renderPath);
-}).post(uploads.single('projectImage'), addProject);
+}).post(uploads.single('projectImage'), projectValidation, runValidation, addProject);
 
 module.exports = router;

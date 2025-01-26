@@ -7,6 +7,7 @@ const ProjectSchema = new mongoose.Schema({
   service: {type: String, required: true},
   url: {type: String, required: true},
   date: {type: Date, default: Date.now()},
+  projectImage: {type: String, required: true},
 },{
   timestamps: true
 });
