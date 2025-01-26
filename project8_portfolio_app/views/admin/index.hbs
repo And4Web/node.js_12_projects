@@ -1,1 +1,24 @@
 <a href="/admin/add" class="button success rounded">Add Project</a>
+
+{{#if projects}}
+  <table class="table table-striped">
+    <tr>
+      <th></th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Service</th>
+      <th></th>
+    </tr>
+    {{#each projects}}
+      <tr>
+        <td><img src="/images/{{projectImage}}" alt="{{title}}" class="small-img"></td>
+        <td>{{_id}}</td>
+        <td>{{title}}</td>
+        <td>{{service}}</td>
+        <td><a href="/admin/edit/{{_id}}" class="button default rounded">Edit</a> <a href="/admin/delete/{{_id}}" class="button alert delete-project rounded" data-id="{{_id}}">Delete</a></td>
+      </tr>
+    {{/each}}
+  </table>
+{{else}}
+  <p>No Projects</p>
+{{/if}}

@@ -12,3 +12,7 @@ h1{
 .padding{
   padding: .6rem;
 }
+.small-img{
+  width: 5rem;
+  height: auto;
+}

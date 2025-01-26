@@ -2,6 +2,19 @@ const path = require('path');
 const Project = require('../models/project');
 
 
+// admn home route
+const getAdminHome = async (req, res)=>{
+  // res.send("Admin route")
+  const renderPath = path.join(__dirname, '..', 'views', 'admin', 'index.hbs');
+  try {
+    const projects = await Project.find({}, {__v:0});
+    res.render(renderPath, {projects: projects});
+  } catch (error) {
+    console.log("error >>> ", error.message);
+    res.render(renderPath, {error: error.message});
+  }
+} 
+
 // Add project - admin/add - admin only
 const addProject = async (req, res) => {
   const renderPath = path.join(__dirname, '..', 'views', 'admin', 'add.hbs');
@@ -39,5 +52,6 @@ const addProject = async (req, res) => {
 }
 
 module.exports = {
-  addProject
+  addProject,
+  getAdminHome,
 }

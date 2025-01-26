@@ -1,9 +1,14 @@
-<div class="row small-up-2 medium-up-3 large-up-4">
-  {{!-- <h5 class="text-center">-----------Break here inside--------</h5> --}}
-  <div class="column">
-    <img class="thumbnail" src="https://placehold.it/550x550">
-    <h5>My Site</h5>
-  </div>
-            
-   {{!-- <h5 class="text-center">-----------Break here inside--------</h5> --}}
-</div>
+{{#if projects}}
+{{#each projects}}  
+    <div class="column">
+      <img class="thumbnail" src="/images/{{projectImage}}">
+      <h5>{{title}}</h5>
+      <p class="text-center show">
+        <a href="/details/{{_id}}" target="_blank">Details</a>
+      </p>
+      
+    </div>  
+{{/each}}
+{{else}}
+  <p>No Projects</p>
+{{/if}}

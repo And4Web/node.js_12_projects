@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { addProject } = require('../controllers/adminController');
+const { addProject, getAdminHome } = require('../controllers/adminController');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -15,11 +15,7 @@ const uploads = multer({storage: storage});
 
 const router = express.Router();
 
-router.get('/', async (req, res)=>{
-  // res.send("Admin route")
-  const renderPath = path.join(__dirname, '..', 'views', 'admin', 'index.hbs');
-  res.render(renderPath)
-})
+router.get('/', getAdminHome);
 
 // router.get('/add', async (req, res)=>{
 //   const renderPath = path.join(__dirname, '..', 'views', 'admin', 'add.hbs');
