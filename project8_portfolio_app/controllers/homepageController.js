@@ -6,7 +6,7 @@ exports.fetchAllProjects = async (req, res) => {
    const renderPath = path.join(__dirname, '..','views', 'home.hbs');
    try {
      const projects = await Project.find({},{__v:0});
-     console.log("All Projects >>> ", projects);
+    //  console.log("All Projects >>> ", projects);
      res.render(renderPath, {projects: projects});
    } catch (error) {
     console.log("Error >>> ", error.message);

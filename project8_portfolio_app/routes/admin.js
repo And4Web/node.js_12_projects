@@ -15,6 +15,8 @@ const uploads = multer({storage: storage});
 
 const router = express.Router();
 
+// admin home page
+
 router.get('/', getAdminHome);
 
 // router.get('/add', async (req, res)=>{
@@ -22,15 +24,18 @@ router.get('/', getAdminHome);
 //   res.render(renderPath);
 // })
 
-// router.post('/add', uploads.single('projectImage'), addProject)
-
 // import validators:
 const {runValidation} = require('../validation/index');
 const {projectValidation} = require('../validation/projectValidation');
+
+// add Project route:
 
 router.route('/add').get(async (req, res)=>{
   const renderPath = path.join(__dirname, '..', 'views', 'admin', 'add.hbs');
   res.render(renderPath);
 }).post(uploads.single('projectImage'), projectValidation, runValidation, addProject);
+
+// Add a new Project:
+// router.post('/add', uploads.single('projectImage'), addProject)
 
 module.exports = router;
