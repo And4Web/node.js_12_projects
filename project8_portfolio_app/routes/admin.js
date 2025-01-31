@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { addProject, getAdminHome } = require('../controllers/adminController');
+const { addProject, getAdminHome, getEditProject, editProject, deleteProject } = require('../controllers/adminController');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -35,7 +35,7 @@ router.route('/add').get(async (req, res)=>{
   res.render(renderPath);
 }).post(uploads.single('projectImage'), projectValidation, runValidation, addProject);
 
-// Add a new Project:
-// router.post('/add', uploads.single('projectImage'), addProject)
+// Edit/delete Project
+router.route('/edit/:projectId').get(getEditProject).post(editProject).delete(deleteProject);
 
 module.exports = router;

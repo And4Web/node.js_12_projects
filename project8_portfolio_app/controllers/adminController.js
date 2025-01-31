@@ -51,7 +51,49 @@ const addProject = async (req, res) => {
   }
 }
 
+
+// Edit, Delete Routes
+const getEditProject = async (req, res) => {
+  const renderPath = path.join(__dirname, '..', 'views', 'admin', 'edit.hbs');
+  try {
+    const {projectId} = req.params;
+    const project = await Project.findById(projectId); 
+    const {title, service, description, projectdate, url, projectImage, client} = project;
+
+    res.render(renderPath, {projectId, title, service, description, projectdate, url, projectImage, client});
+  } catch (error) {
+    console.log("project edit error >>> ", error.message);
+    res.render(renderPath, {editPageError: error.message});
+  }
+}
+
+const editProject = async (req, res) => {
+  const renderPath = path.join(__dirname, '..', 'views', 'admin', 'index.hbs');
+  try {
+    const {projectId} = req.params;
+    const {title, service, client, description, projectdate, projectImage} = req.body;
+    await Project.updateOne({_id: projectId}, {title, service, client, description, projectdate, projectImage});
+
+    await Project.save()
+
+    const updatedProject = await Project.findById(projectId);
+    console.log("updated Project >>> ", updatedProject);
+
+    res.render(renderPath, {projectId, title:updatedProject.title, service:updatedProject.service, description:updatedProject.description, projectdate:updatedProject.projectdate, projectImage:updatedProject.projectImage, client:updatedProject.client});
+  } catch (error) {
+    console.log("project edit error >>> ", error.message);
+    res.render(renderPath, {editPageError: error.message});
+  }
+}
+
+const deleteProject = async (req, res) => {}
+
+
+
 module.exports = {
   addProject,
   getAdminHome,
+  editProject,
+  deleteProject,
+  getEditProject,
 }

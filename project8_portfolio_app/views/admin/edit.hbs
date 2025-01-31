@@ -1,0 +1,36 @@
+<a href="/admin" class="button secondary rounded">Go Back</a>
+<h3>Edit Project - {{projectId}}</h3>
+<form action="/admin/edit/{{projectId}}" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" name="title" class="form-control" placeholder="Title" value={{title}}>
+  </div>
+
+  <div class="form-group">
+    <label>Service</label>
+    <input type="text" name="service" class="form-control" placeholder="Service" value={{service}}>
+  </div>
+
+  <div class="form-group">
+    <label>Client</label>
+    <input type="text" name="client" class="form-control" placeholder="Client" value={{client}}>
+  </div>
+
+  <div class="form-group">
+    <label>Description</label>
+    <textarea name="description" class="form-control" placeholder="Description">{{description}}</textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Project Date</label>
+    <input type="date" name="projectdate" class="form-control" value={{projectdate}}>
+  </div>
+
+  <div class="form-group">
+    <label>Project Image</label>
+    <input type="file" name="ProjectImage" class="form-control" placeholder="Project Image" value={{projectImage}}>
+  </div>
+
+  <button type="submit" class="button rounded primary">Submit</button>
+
+</form>
